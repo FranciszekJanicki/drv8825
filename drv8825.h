@@ -8,8 +8,9 @@ typedef struct {
     drv8825_interface_t interface;
 } drv8825_t;
 
-drv8825_err_t
-drv8825_initialize(drv8825_t const* drv8825, drv8825_config_t const* config, drv8825_interface_t const* interface);
+drv8825_err_t drv8825_initialize(drv8825_t const* drv8825,
+                                 drv8825_config_t const* config,
+                                 drv8825_interface_t const* interface);
 drv8825_err_t drv8825_deinitialize(drv8825_t const* drv8825);
 
 drv8825_err_t drv8825_start_pulses(drv8825_t const* drv8825);
