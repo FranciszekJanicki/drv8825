@@ -4,10 +4,8 @@ target_sources(drv8825 PRIVATE
     "drv8825.c"
 )
 
-target_include_directories(drv8825 PUBLIC 
-)
-
-target_link_libraries(drv8825 PRIVATE
+target_include_directories(drv8825 PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_compile_options(drv8825 PUBLIC
