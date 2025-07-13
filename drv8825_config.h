@@ -1,6 +1,7 @@
 #ifndef DRV8825_DRV8825_CONFIG_H
 #define DRV8825_DRV8825_CONFIG_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 typedef enum {
@@ -66,12 +67,12 @@ typedef struct {
     drv8825_err_t (*gpio_deinitialize)(void*);
     drv8825_err_t (*gpio_write_pin)(void*, uint32_t, bool);
 
-    void* pulse_user;
-    drv8825_err_t (*pulse_initialize)(void*);
-    drv8825_err_t (*pulse_deinitialize)(void*);
-    drv8825_err_t (*pulse_start)(void*);
-    drv8825_err_t (*pulse_stop)(void*);
-    drv8825_err_t (*pulse_set_freq)(void*, uint32_t);
+    void* pwm_user;
+    drv8825_err_t (*pwm_initialize)(void*);
+    drv8825_err_t (*pwm_deinitialize)(void*);
+    drv8825_err_t (*pwm_start)(void*);
+    drv8825_err_t (*pwm_stop)(void*);
+    drv8825_err_t (*pwm_set_frequency)(void*, uint32_t);
 } drv8825_interface_t;
 
 #endif // DRV8825_DRV8825_CONFIG_H
