@@ -134,7 +134,7 @@ drv8825_err_t drv8825_set_half_microstep(drv8825_t const* drv8825)
 }
 
 drv8825_err_t drv8825_set_quarter_microstep(drv8825_t const* drv8825)
-{   
+{
     assert(drv8825);
 
     drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
@@ -198,7 +198,7 @@ drv8825_err_t drv8825_set_forward_direction(drv8825_t const* drv8825)
     assert(drv8825);
 
     drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, false);
-    err |= drv8825_start_pwms(drv8825);
+    err |= drv8825_pwm_start(drv8825);
 
     return err;
 }
@@ -208,7 +208,7 @@ drv8825_err_t drv8825_set_backward_direction(drv8825_t const* drv8825)
     assert(drv8825);
 
     drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, true);
-    err |= drv8825_start_pwms(drv8825);
+    err |= drv8825_pwm_start(drv8825);
 
     return err;
 }
@@ -217,7 +217,7 @@ drv8825_err_t drv8825_set_stop_direction(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    return drv8825_stop_pwms(drv8825);
+    return drv8825_pwm_stop(drv8825);
 }
 
 drv8825_err_t drv8825_set_decay(drv8825_t const* drv8825, drv8825_decay_t decay)
