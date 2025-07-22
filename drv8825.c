@@ -14,47 +14,59 @@ static drv8825_err_t drv8825_pwm_initialize(drv8825_t const* drv8825)
 static drv8825_err_t drv8825_pwm_deinitialize(drv8825_t const* drv8825)
 {
     return drv8825->interface.pwm_deinitialize
-               ? drv8825->interface.pwm_deinitialize(drv8825->interface.pwm_user)
+               ? drv8825->interface.pwm_deinitialize(
+                     drv8825->interface.pwm_user)
                : DRV8825_ERR_NULL;
 }
 
 static drv8825_err_t drv8825_pwm_start(drv8825_t const* drv8825)
 {
-    return drv8825->interface.pwm_start ? drv8825->interface.pwm_start(drv8825->interface.pwm_user)
-                                        : DRV8825_ERR_NULL;
+    return drv8825->interface.pwm_start
+               ? drv8825->interface.pwm_start(drv8825->interface.pwm_user)
+               : DRV8825_ERR_NULL;
 }
 
 static drv8825_err_t drv8825_pwm_stop(drv8825_t const* drv8825)
 {
-    return drv8825->interface.pwm_stop ? drv8825->interface.pwm_stop(drv8825->interface.pwm_user)
-                                       : DRV8825_ERR_NULL;
+    return drv8825->interface.pwm_stop
+               ? drv8825->interface.pwm_stop(drv8825->interface.pwm_user)
+               : DRV8825_ERR_NULL;
 }
 
-static drv8825_err_t drv8825_pwm_set_frequency(drv8825_t const* drv8825, uint32_t frequency)
+static drv8825_err_t drv8825_pwm_set_frequency(drv8825_t const* drv8825,
+                                               uint32_t frequency)
 {
     return drv8825->interface.pwm_set_frequency
-               ? drv8825->interface.pwm_set_frequency(drv8825->interface.pwm_user, frequency)
+               ? drv8825->interface.pwm_set_frequency(
+                     drv8825->interface.pwm_user,
+                     frequency)
                : DRV8825_ERR_NULL;
 }
 
 static drv8825_err_t drv8825_gpio_initialize(drv8825_t const* drv8825)
 {
     return drv8825->interface.gpio_initialize
-               ? drv8825->interface.gpio_initialize(drv8825->interface.gpio_user)
+               ? drv8825->interface.gpio_initialize(
+                     drv8825->interface.gpio_user)
                : DRV8825_ERR_NULL;
 }
 
 static drv8825_err_t drv8825_gpio_deinitialize(drv8825_t const* drv8825)
 {
     return drv8825->interface.gpio_deinitialize
-               ? drv8825->interface.gpio_deinitialize(drv8825->interface.gpio_user)
+               ? drv8825->interface.gpio_deinitialize(
+                     drv8825->interface.gpio_user)
                : DRV8825_ERR_NULL;
 }
 
-static drv8825_err_t drv8825_gpio_write_pin(drv8825_t const* drv8825, uint32_t pin, bool state)
+static drv8825_err_t drv8825_gpio_write_pin(drv8825_t const* drv8825,
+                                            uint32_t pin,
+                                            bool state)
 {
     return drv8825->interface.gpio_write_pin
-               ? drv8825->interface.gpio_write_pin(drv8825->interface.gpio_user, pin, state)
+               ? drv8825->interface.gpio_write_pin(drv8825->interface.gpio_user,
+                                                   pin,
+                                                   state)
                : DRV8825_ERR_NULL;
 }
 
@@ -84,14 +96,16 @@ drv8825_err_t drv8825_deinitialize(drv8825_t const* drv8825)
     return err;
 }
 
-drv8825_err_t drv8825_set_frequency(drv8825_t const* drv8825, uint32_t frequency)
+drv8825_err_t drv8825_set_frequency(drv8825_t const* drv8825,
+                                    uint32_t frequency)
 {
     assert(drv8825);
 
     return drv8825_pwm_set_frequency(drv8825, frequency);
 }
 
-drv8825_err_t drv8825_set_microstep(drv8825_t const* drv8825, drv8825_microstep_t microstep)
+drv8825_err_t drv8825_set_microstep(drv8825_t const* drv8825,
+                                    drv8825_microstep_t microstep)
 {
     assert(drv8825);
 
@@ -115,7 +129,8 @@ drv8825_err_t drv8825_set_full_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, false);
 
@@ -126,7 +141,8 @@ drv8825_err_t drv8825_set_half_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, false);
 
@@ -137,7 +153,8 @@ drv8825_err_t drv8825_set_quarter_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, true);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, false);
 
@@ -148,7 +165,8 @@ drv8825_err_t drv8825_set_eighth_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, true);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, false);
 
@@ -159,7 +177,8 @@ drv8825_err_t drv8825_set_sixteenth_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, true);
 
@@ -170,14 +189,16 @@ drv8825_err_t drv8825_set_thirtysecondth_microstep(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode0, true);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode1, false);
     err |= drv8825_gpio_write_pin(drv8825, drv8825->config.pin_mode2, true);
 
     return err;
 }
 
-drv8825_err_t drv8825_set_direction(drv8825_t const* drv8825, drv8825_direction_t direction)
+drv8825_err_t drv8825_set_direction(drv8825_t const* drv8825,
+                                    drv8825_direction_t direction)
 {
     assert(drv8825);
 
@@ -197,7 +218,8 @@ drv8825_err_t drv8825_set_forward_direction(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, false);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, false);
     err |= drv8825_pwm_start(drv8825);
 
     return err;
@@ -207,7 +229,8 @@ drv8825_err_t drv8825_set_backward_direction(drv8825_t const* drv8825)
 {
     assert(drv8825);
 
-    drv8825_err_t err = drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, true);
+    drv8825_err_t err =
+        drv8825_gpio_write_pin(drv8825, drv8825->config.pin_dir, true);
     err |= drv8825_pwm_start(drv8825);
 
     return err;
