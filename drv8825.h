@@ -3,6 +3,10 @@
 
 #include "drv8825_config.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct {
     drv8825_config_t config;
     drv8825_interface_t interface;
@@ -39,5 +43,9 @@ drv8825_err_t drv8825_set_slow_decay(drv8825_t const* drv8825);
 drv8825_err_t drv8825_set_reset(drv8825_t const* drv8825, bool reset);
 drv8825_err_t drv8825_set_enable(drv8825_t const* drv8825, bool enable);
 drv8825_err_t drv8825_set_sleep(drv8825_t const* drv8825, bool sleep);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // DRV8825_DRV8825_H

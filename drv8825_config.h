@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef enum {
     DRV8825_ERR_OK = 0,
     DRV8825_ERR_FAIL = 1 << 0,
@@ -74,5 +78,9 @@ typedef struct {
     drv8825_err_t (*pwm_stop)(void*);
     drv8825_err_t (*pwm_set_frequency)(void*, uint32_t);
 } drv8825_interface_t;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif // DRV8825_DRV8825_CONFIG_H
